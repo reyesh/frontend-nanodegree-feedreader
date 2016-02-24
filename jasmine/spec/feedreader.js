@@ -107,4 +107,30 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    describe('New Feed Selection', function() {
+
+        var entryHeader;
+        var header;
+
+            //$('a[data-id="4"]').click();
+        beforeEach(function(done){
+            loadFeed(0, function(){
+                entryHeader = $('.entry-link .entry h2')[0];
+                header = $('.header .header-title').html();
+                loadFeed(1, function(){
+                    done();
+                });
+            });
+
+        });
+
+        it('check if feeds changes', function(done){
+            expect( $('.entry-link .entry h2')[0] ).not.toBe(entryHeader);
+            expect( $('.header .header-title').html() ).not.toBe(header);
+            done();
+        })
+
+    });
+
+
 }());
