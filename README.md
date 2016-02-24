@@ -1,3 +1,22 @@
+# Udacity's Front End Web Development Nanodegree
+
+## Project 6 - Feed Reader Testing
+
+Use the Jasmine framework to create test suites that will test the functionality of a web-based application that reads RSS feeds.
+
+## About
+
+In this project I learned the value in testing. Up to this point I've done my testing manually by refactoring my code and refreshing the browser even though this works, if my web app gets big and complex I may end up missing testing a particular part of it. This is why a testing framework like Jasmine is important. Also using a framework like Jasmine also allows you to develope in a whole different way, called Test Driven Development where you write you tests first and then develope your app.
+
+## Files
+Overview of important files
+
+jasmine/spec/feedreader.js // spec file that contains all test, and that jasmine will use
+
+js/app.js // main feedreader application
+
+/index.html // run this to start the web app
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
