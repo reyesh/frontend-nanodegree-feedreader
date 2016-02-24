@@ -61,6 +61,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
          it('Menu element hidden by default', function(){
+            // check if body tag has the class "menu-hidden"
             expect( $('body').hasClass( "menu-hidden" ) ).toBe(true);
          });
          /* TODO: Write a test that ensures the menu changes
@@ -88,11 +89,12 @@ $(function() {
     describe('Initial Entries', function() {
 
         beforeEach(function(done){
+            // run the asyn loadFeed function before testing
             loadFeed(0,function(){
                 done()
             });
         });
-
+        //makes sure after the loadFeed function runs we have something inside of the .feed container
         it('loadFeed() called, makes sure .feed container has at least a single .entry element', function(done){
             expect( $('.feed').children('.entry-link').length ).not.toBe(0);
             done();
@@ -112,9 +114,10 @@ $(function() {
         var entryHeader;
         var header;
 
-            //$('a[data-id="4"]').click();
         beforeEach(function(done){
+            //Run the asyn loadFeed function recursively, needs to be ran twice to check if content changes.
             loadFeed(0, function(){
+                // We use the first entry header h2 title & and the header of the feed
                 entryHeader = $('.entry-link .entry h2')[0];
                 header = $('.header .header-title').html();
                 loadFeed(1, function(){
@@ -125,6 +128,7 @@ $(function() {
         });
 
         it('check if feeds changes', function(done){
+            //checks if the entry header and feed header change.
             expect( $('.entry-link .entry h2')[0] ).not.toBe(entryHeader);
             expect( $('.header .header-title').html() ).not.toBe(header);
             done();
