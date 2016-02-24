@@ -30,11 +30,9 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('allFeed.name are defined and are URL', function(){
+        it('allFeed[n].name are defined', function(){
             for(var i=0; i<allFeeds.length; i++){
-                //console.log(allFeeds[i]);
                 expect(allFeeds[i].name).not.toEqual('');
-                //expect(allFeeds[i].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
             }
         });
 
@@ -42,9 +40,8 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('allFeed.url are defined and not empty', function(){
+        it('allFeed[n].url are defined and not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
-                //console.log(allFeeds[i]);
                 expect(allFeeds[i].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
             }
         });
