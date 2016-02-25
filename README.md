@@ -17,6 +17,9 @@ js/app.js // main feedreader application
 
 /index.html // run this to start the web app
 
+## Grunt
+Grunt is used to run `jshint` on js/app.js jasmine/spec/feedreader.js and gruntfile.js
+
 ## Test Suites
 This tests are found inside the spec file jasmine/spec/feedreader.js
 
@@ -30,9 +33,9 @@ Tests to make sure that the allFeeds variable has been defined and that it is no
 ```
 Test that loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty.
 ```javascript
-        it('allFeed[n].name are defined', function(){
+        it('allFeed object has a name defined and that the name is not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
-                expect(allFeeds[i].name).not.toEqual('');
+                expect(allFeeds[i].name).toBeDefined();
             }
         });
 ```
@@ -47,14 +50,19 @@ Test that loops through each feed in the allFeeds object and ensures it has a UR
 ###The menu
 Test that ensures the menu element is hidden by default.
 ```javascript
-            expect( $('body').hasClass( "menu-hidden" ) ).toBe(true);
+         it('Menu element hidden by default', function(){
+            // check if body tag has the class 'menu-hidden'
+            expect( $('body').hasClass( 'menu-hidden' ) ).toBeTruthy();
+         });
 ```
 Test that ensures the menu changes visibility when the menu icon is clicked.
 ```javascript
+          it('Menu changes visibility when the menu icon is clicked', function(){
             $('.menu-icon-link').click();
-            expect( $('body').hasClass( "menu-hidden" ) ).toBe(false);
+            expect( $('body').hasClass( 'menu-hidden' ) ).toBeFalsy();
             $('.menu-icon-link').click();
-            expect( $('body').hasClass( "menu-hidden" ) ).toBe(true);
+            expect( $('body').hasClass( 'menu-hidden' ) ).toBeTruthy();
+          });
 ```
 ###Initial Entries
 Test that ensures when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container.
@@ -62,28 +70,28 @@ Test that ensures when the loadFeed function is called and completes its work, t
         beforeEach(function(done){
             // run the asyn loadFeed function before testing
             loadFeed(0,function(){
-                done()
+                done();
             });
         });
         //makes sure after the loadFeed function runs we have something inside of the .feed container
-        it('loadFeed() called, makes sure .feed container has at least a single .entry element', function(done){
-            expect( $('.feed').children('.entry-link').length ).not.toBe(0);
-            done();
+        it('loadFeed() called, makes sure .feed container has at least a single .entry element', function(){
+            expect( $('.feed .entry-link').length ).not.toBe(0);
         });
 ```
 
 ###New Feed Selection
 Test that ensures when a new feed is loaded by the loadFeed function that the content actually changes.
 ```javascript
-        var entryHeader;
-        var header;
+        var entryHeader, header;
 
         beforeEach(function(done){
             //Run the asyn loadFeed function recursively, needs to be ran twice to check if content changes.
             loadFeed(0, function(){
                 // We use the first entry header h2 title & and the header of the feed
-                entryHeader = $('.entry-link .entry h2')[0];
+                entryHeader = $('.entry-link .entry h2').html();
                 header = $('.header .header-title').html();
+                console.log(entryHeader);
+                console.log(header);
                 loadFeed(1, function(){
                     done();
                 });
@@ -91,12 +99,11 @@ Test that ensures when a new feed is loaded by the loadFeed function that the co
 
         });
 
-        it('check if feeds changes', function(done){
+        it('check if feeds changes', function(){
             //checks if the entry header and feed header change.
-            expect( $('.entry-link .entry h2')[0] ).not.toBe(entryHeader);
+            expect( $('.entry-link .entry h2').html() ).not.toBe(entryHeader);
             expect( $('.header .header-title').html() ).not.toBe(header);
-            done();
-        })
+        });
 ```
 
 # Resources Used
