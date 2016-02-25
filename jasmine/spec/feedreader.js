@@ -89,7 +89,6 @@ $(function() {
             expect( $('.feed .entry-link').length ).not.toBe(0);
         });
 
-
     });
 
 
