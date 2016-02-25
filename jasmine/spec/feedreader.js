@@ -122,5 +122,18 @@ $(function() {
 
     });
 
+    describe('Upload new RSS feed', function() {
+
+        var newRSS = { name: "Smashing Magazine",
+                        url: "https://www.smashingmagazine.com/feed/" }
+
+        addFeed(newRSS);
+
+        it('check allFeeds array for new object', function(){
+            expect(allFeeds[allFeeds.length-1]).toEqual(newRSS);
+        });
+
+    });
+
 
 }());

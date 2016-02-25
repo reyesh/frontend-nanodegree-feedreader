@@ -86,6 +86,11 @@ function init() {
      });
  }
 
+ //TODO: implement function to add content
+ function addFeed(obj){
+    allFeeds.push(obj);
+ }
+
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */

@@ -99,6 +99,19 @@ Test that ensures when a new feed is loaded by the loadFeed function that the co
         })
 ```
 
+###Upload new RSS feed
+Test that ensures the adding a new RSS feed to the allFeed object by the addFeed function works. Function was added to app.js but not to the GUI index.html.
+```javascript
+        var newRSS = { name: "Smashing Magazine",
+                        url: "https://www.smashingmagazine.com/feed/" }
+
+        addFeed(newRSS);
+
+        it('check allFeeds array for new object', function(){
+            expect(allFeeds[allFeeds.length-1]).toEqual(newRSS);
+        });
+```
+
 # Resources Used
 JavaScript Regex to match a URL in a field of text
 http://stackoverflow.com/questions/8188645/javascript-regex-to-match-a-url-in-a-field-of-text
