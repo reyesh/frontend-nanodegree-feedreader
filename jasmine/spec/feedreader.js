@@ -71,7 +71,7 @@ $(function() {
             expect( $('body').hasClass( "menu-hidden" ) ).toBe(false);
             $('.menu-icon-link').click();
             expect( $('body').hasClass( "menu-hidden" ) ).toBe(true);
-          })
+          });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -88,7 +88,7 @@ $(function() {
         beforeEach(function(done){
             // run the asyn loadFeed function before testing
             loadFeed(0,function(){
-                done()
+                done();
             });
         });
         //makes sure after the loadFeed function runs we have something inside of the .feed container
@@ -129,7 +129,7 @@ $(function() {
             expect( $('.entry-link .entry h2')[0] ).not.toBe(entryHeader);
             expect( $('.header .header-title').html() ).not.toBe(header);
             done();
-        })
+        });
 
     });
 
