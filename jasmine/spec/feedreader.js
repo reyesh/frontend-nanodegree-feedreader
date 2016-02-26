@@ -30,7 +30,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('allFeed object has a name defined and that the name is not empty', function(){
+        it('has a name defined and that the name is not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
                 expect(allFeeds[i].name).toBeDefined();
             }
@@ -40,7 +40,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('allFeed[n].url are defined and not empty', function(){
+        it('has the url defined and not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
                 expect(allFeeds[i].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
             }
@@ -54,7 +54,7 @@ $(function() {
         /* Test that ensures the menu element is
          * hidden by default.
          */
-         it('Menu element hidden by default', function(){
+         it('element hidden by default', function(){
             // check if body tag has the class 'menu-hidden'
             expect( $('body').hasClass( 'menu-hidden' ) ).toBeTruthy();
          });
@@ -63,7 +63,7 @@ $(function() {
           * has two expectations: the menu display when
           * clicked and does it hide when clicked again.
           */
-          it('Menu changes visibility when the menu icon is clicked', function(){
+          it('changes visibility when the menu icon is clicked', function(){
             $('.menu-icon-link').click();
             expect( $('body').hasClass( 'menu-hidden' ) ).toBeFalsy();
             $('.menu-icon-link').click();
@@ -85,7 +85,7 @@ $(function() {
             });
         });
         //makes sure after the loadFeed function runs we have something inside of the .feed container
-        it('loadFeed() called, makes sure .feed container has at least a single .entry element', function(){
+        it('loadFeed() is called, makes sure .feed container has at least a single .entry element', function(){
             expect( $('.feed .entry-link').length ).not.toBe(0);
         });
 
@@ -105,8 +105,6 @@ $(function() {
                 // We use the first entry header h2 title & and the header of the feed
                 entryHeader = $('.entry-link .entry h2').html();
                 header = $('.header .header-title').html();
-                console.log(entryHeader);
-                console.log(header);
                 loadFeed(1, function(){
                     done();
                 });
@@ -114,7 +112,7 @@ $(function() {
 
         });
 
-        it('check if feeds changes', function(){
+        it('checks if feeds changes', function(){
             //checks if the entry header and feed header change.
             expect( $('.entry-link .entry h2').html() ).not.toBe(entryHeader);
             expect( $('.header .header-title').html() ).not.toBe(header);
@@ -129,7 +127,7 @@ $(function() {
 
         addFeed(newRSS);
 
-        it('check allFeeds array for new object', function(){
+        it('check allFeeds array for new feed object', function(){
             expect(allFeeds[allFeeds.length-1]).toEqual(newRSS);
         });
 
