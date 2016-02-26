@@ -30,21 +30,45 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('has a name defined and that the name is not empty', function(){
+        /* it('has a name defined and that the name is not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
                 expect(allFeeds[i].name).toBeDefined();
             }
-        });
+        }); */
+
+        //Place the it function inside another declared function to display which array element we're testing.
+        function testEachObjInallFeeds(index){
+            it('has a name defined and that the name is not empty for allFeeds['+index+'].name', function(){
+                expect(allFeeds[index].name).toBeDefined();
+                expect(allFeeds[index].name.length).not.toBe(0);
+            });
+        }
+
+        for(var feed=0; feed<allFeeds.length; feed++){
+            testEachObjInallFeeds(feed);
+        }
 
         /* Test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('has the url defined and not empty', function(){
+    /*    it('has the url defined and not empty', function(){
             for(var i=0; i<allFeeds.length; i++){
+                console.log(allFeeds[i].name.length);
                 expect(allFeeds[i].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
             }
-        });
+        }); */
+
+        function testEachURLInallFeeds(index){
+            it('has the URL defined and that the URL is not empty for allfeeds['+index+'].url', function(){
+                expect(allFeeds[index].url.length).not.toBe(0);
+                expect(allFeeds[index].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
+            });
+        }
+
+        for(var feed=0; feed<allFeeds.length; feed++){
+            testEachURLInallFeeds(feed);
+        }
 
     });
 
@@ -80,9 +104,7 @@ $(function() {
 
         beforeEach(function(done){
             // run the asyn loadFeed function before testing
-            loadFeed(0,function(){
-                done();
-            });
+            loadFeed(0,done);
         });
         //makes sure after the loadFeed function runs we have something inside of the .feed container
         it('loadFeed() is called, makes sure .feed container has at least a single .entry element', function(){
@@ -101,11 +123,11 @@ $(function() {
 
         beforeEach(function(done){
             //Run the asyn loadFeed function recursively, needs to be ran twice to check if content changes.
-            loadFeed(0, function(){
+            loadFeed(1, function(){
                 // We use the first entry header h2 title & and the header of the feed
                 entryHeader = $('.entry-link .entry h2').html();
                 header = $('.header .header-title').html();
-                loadFeed(1, function(){
+                loadFeed(2, function(){
                     done();
                 });
             });
@@ -120,6 +142,10 @@ $(function() {
 
     });
 
+    /* Test that ensures when a new feed is added by the addFeed() function
+     * that the content actually is added to allFeeds object
+     */
+
     describe('Upload new RSS feed', function() {
 
         var newRSS = { name: "Smashing Magazine",
@@ -130,6 +156,28 @@ $(function() {
         it('check allFeeds array for new feed object', function(){
             expect(allFeeds[allFeeds.length-1]).toEqual(newRSS);
         });
+
+    });
+
+    /* Test that ensures when a feed is deleted by the deleteFeed() function
+     * that the content actually is deleted in the allFeeds object.
+     */
+
+    describe('Delete RSS feed', function() {
+
+    //saves current length of allFeed array
+    var len = allFeeds.length;
+    //saves the feed obj thats going to be deleted
+    var feed = allFeeds[0];
+    //runs the deleteFeed function
+    deleteFeed(0);
+
+    xit('check allFeeds array for removal of feed object', function(){
+        //checks if the allFeed length has been reduced by one
+        expect(allFeeds.length).toEqual(len-1);
+        //checks if the obj isnt the same as the one deleted
+        expect(allFeeds[0]).not.toEqual(feed);
+    });
 
     });
 
