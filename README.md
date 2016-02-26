@@ -119,6 +119,28 @@ Test that ensures the adding a new RSS feed to the allFeed object by the addFeed
         });
 ```
 
+###Delete RSS feed (not yet implemented)
+Test that ensures when a feed is deleted by the deleteFeed() function that the content actually is deleted in the allFeeds object.
+```javascript
+
+    //saves current length of allFeed array
+    var len = allFeeds.length;
+    //saves the feed obj thats going to be deleted
+    var feed = allFeeds[0];
+    //runs the deleteFeed function
+    deleteFeed(0);
+
+    xit('check allFeeds array for removal of feed object', function(){
+        //checks if the allFeed length has been reduced by one
+        expect(allFeeds.length).toEqual(len-1);
+        //checks if the obj isnt the same as the one deleted
+        expect(allFeeds[0]).not.toEqual(feed);
+    });
+
+    });
+
+
+```
 # Resources Used
 JavaScript Regex to match a URL in a field of text
 http://stackoverflow.com/questions/8188645/javascript-regex-to-match-a-url-in-a-field-of-text
