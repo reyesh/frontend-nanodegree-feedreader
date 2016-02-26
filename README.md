@@ -33,19 +33,29 @@ Tests to make sure that the allFeeds variable has been defined and that it is no
 ```
 Test that loops through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty.
 ```javascript
-        it('allFeed object has a name defined and that the name is not empty', function(){
-            for(var i=0; i<allFeeds.length; i++){
-                expect(allFeeds[i].name).toBeDefined();
-            }
-        });
+        function testEachObjInallFeeds(index){
+            it('has a name defined and that the name is not empty for allFeeds['+index+'].name', function(){
+                expect(allFeeds[index].name).toBeDefined();
+                expect(allFeeds[index].name.length).not.toBe(0);
+            });
+        }
+
+        for(var feed=0; feed<allFeeds.length; feed++){
+            testEachObjInallFeeds(feed);
+        }
 ```
 Test that loops through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty.
 ```javascript
-        it('allFeed[n].url are defined and not empty', function(){
-            for(var i=0; i<allFeeds.length; i++){
-                expect(allFeeds[i].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
-            }
-        });
+        function testEachURLInallFeeds(index){
+            it('has the URL defined and that the URL is not empty for allfeeds['+index+'].url', function(){
+                expect(allFeeds[index].url.length).not.toBe(0);
+                expect(allFeeds[index].url).toMatch(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/);
+            });
+        }
+
+        for(var feed=0; feed<allFeeds.length; feed++){
+            testEachURLInallFeeds(feed);
+        }
 ```
 ###The menu
 Test that ensures the menu element is hidden by default.
