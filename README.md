@@ -6,7 +6,7 @@ Use the Jasmine framework to create test suites that will test the functionality
 
 ## About
 
-In this project I learned the value in testing. Up to this point I've done my testing manually by refactoring my code and refreshing the browser even though this works, if my web app gets big and complex I may end up missing testing a particular part of it. This is why a testing framework like Jasmine is important. Also using a framework like Jasmine also allows you to develope in a whole different way, called Test Driven Development where you write you tests first and then develope your app.
+In this project I learned the value in testing. Up to this point I've done my testing manually by refactoring my code and refreshing the browser, even though this works if my web app gets big and complex I may end up missing testing a particular part of it. This is why a testing framework like Jasmine is important. Also using a framework like Jasmine also allows you to develop in a whole different way, called Test Driven Development where you write tests first and then develop your app.
 
 ## Files
 Overview of important files
